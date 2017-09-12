@@ -25,21 +25,21 @@ public class BookController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
-
-		model.addAttribute("books", repository.findAll());
+		
+		model.addAttribute("book", new Book());
 		return "addbook";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(Book book) {
 		repository.save(book);
-		return "booklist";
+		return "redirect:/booklist";
 	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-	public String delete(@PathVariable Book bookId) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String delete(@PathVariable("id") long bookId) {
 		repository.delete(bookId);
-		return "booklist";
+		return "redirect:/booklist";
 	}
 	
 	
