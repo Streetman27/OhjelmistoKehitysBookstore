@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Getting Started: Handling Form Submission</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+</head>
+<body>
+	<h1>Books</h1>
+	<form th:object="${  student}" th:action="@{../save  }" action="#"		method="post  ">
+	
+	</form>
+		<a class="btn btn-success" href="/addbook">Add Book</a>
+</body>
+</html>
