@@ -7,8 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import fi.swd.Bookstore.domain.User;
 import fi.swd.Bookstore.domain.Book;
 import fi.swd.Bookstore.domain.BookRepository;
+import fi.swd.Bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -20,12 +22,18 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
+	public CommandLineRunner demo(BookRepository repository, UserRepository urepository) {
 		return (args) -> {
 			// save a couple of books
 			repository.save(new Book("A Farewell to Arms", "Ernest Hemingway","1929","1232323-21"));
 			repository.save(new Book("Animal Farm", "George Orwell","1945","2212343-5"));
-
+			
+			// Create users: admin/admin user/user
+						User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+						User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+						urepository.save(user1);
+						urepository.save(user2);
+			
 			// fetch all books
 			log.info("Books found with findAll():");
 			log.info("-------------------------------");
