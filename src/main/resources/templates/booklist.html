@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<title>Getting Started: Handling Form Submission</title>
+<title>BookStore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 </head>
@@ -19,8 +19,11 @@
 				<th>Author</th>
 				<th>Title</th>
 				<th>ISBN</th>
-				<th>Year</th>				
-				<th sec:authorize="hasRole('ADMIN')"></th>
+				<th>Year</th>
+				<!-- hasRole('') / hasAuthority('') --> 
+				<!-- hasRole -> InMemory -->
+				<!-- hasAuthority -> User entities -->
+				<th sec:authorize="hasAuthority('ADMIN')"></th>	
 			</tr>
 		</thead>
 		<tbody>
@@ -29,7 +32,8 @@
 				<td th:text="${book.title}"></td>
 				<td th:text="${book.isbn}"></td>
 				<td th:text="${book.year}"></td>
-				<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+				<!-- hasRole('') / hasAuthority('') -->
+				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
