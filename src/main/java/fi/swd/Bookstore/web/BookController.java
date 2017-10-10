@@ -61,5 +61,10 @@ public class BookController {
 	public @ResponseBody Book findBookRest(@PathVariable("id") long bookId) {
 		return repository.findOne(bookId);
 	}
+	
+    @RequestMapping(value = "/")
+    public String index() {
+        return "index";
+    }
 
 }
