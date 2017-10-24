@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
 	<script type="text/babel">
-	class App extends React.Component {
+	class  App extends React.Component {
 		  constructor(props) {
 		      super(props);
 		      this.deleteBook = this.deleteBook.bind(this);
@@ -46,7 +46,7 @@
 		  // Delete book
 		  deleteBook(book) {
 		      fetch (book._links.self.href,
-		      { method: 'DELETE',})
+		      { method: 'DELETE', credentials: 'same-origin'})
 		      .then( 
 		          res => this.loadBooksFromServer()
 		      )
@@ -55,8 +55,8 @@
 		  
 		  // Create new book
 		  createBook(book) {
-		      fetch('http://localhost:8080/api/book', {
-		          method: 'POST',
+		      fetch('http://localhost:8080/api/books', {
+			  method: 'POST', credentials: 'same-origin',
 		          headers: {
 		            'Content-Type': 'application/json',
 		          },
